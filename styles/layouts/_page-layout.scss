@@ -1,0 +1,77 @@
+header {
+  height: 32px;
+  grid-column: span 2;
+  background: $nav-color;
+}
+
+.navigation {
+  @include flex(unset, unset);
+  background-color: $nav-color;
+
+  nav {
+    @include flex(unset, center, column);
+    gap: $gap;
+    width: 72px;
+
+    .list-item {
+      position: relative;
+      width: 100%;
+      @include flex;
+
+      .notification {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        width: 0;
+        height: 0;
+        background: #fbfbfb;
+        border-radius: 0 4px 4px 0;
+        transition: width .1s ease-in-out, height .1s ease-in-out;
+      }
+
+      img {
+        border-radius: $border-radius;
+        cursor: pointer;
+      }
+
+      &[data-status="notification"] {
+        .notification {
+          display: inline-block;
+          height: 8px;
+          width: 8px;
+        }
+      }
+
+      &[data-status="selected"] {
+        .notification {
+          display: inline-block;
+          height: 100%;
+          width: 8px;
+        }
+      }
+
+      &:hover:not([data-status="selected"]) {
+        .notification {
+          display: inline-block;
+          height: 20px;
+          width: 8px;
+        }
+      }
+    }
+
+    hr {
+      width: 32px;
+      height: 1px;
+      border: none;
+      background: $border-color;
+    }
+  }
+
+  section {
+    border: 1px solid $border-color;
+    width: 303px;
+    border-radius: $border-radius 0 0 0;
+  }
+}
