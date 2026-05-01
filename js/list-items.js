@@ -1,4 +1,4 @@
-const listItems = document.querySelectorAll(".list-item");
+const listItems = document.querySelectorAll(".list-item:not(.no-link)");
 
 function selectListItem(target) {
   listItems.forEach(li => {
@@ -17,7 +17,7 @@ if (listItems && listItems.length) {
   });
 
   document.addEventListener("keydown", (e) => {
-    if (!e.altKey) return;
+    if (!e.ctrlKey || !e.altKey) return;
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
     e.preventDefault();
 

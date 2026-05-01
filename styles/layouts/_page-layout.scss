@@ -6,7 +6,7 @@ header {
 
 .navigation {
   @include flex(unset, unset);
-  background-color: $nav-color;
+  background: $nav-color;
 
   nav {
     @include flex(unset, center, column);
@@ -31,7 +31,31 @@ header {
         transition: width .1s ease-in-out, height .1s ease-in-out;
       }
 
-      img {
+      &.fixed {
+        &:not(.no-link)[data-status="selected"] .logo {
+          background: $discord-color;
+          color: white;
+        }
+
+        .logo {
+          background: $nav-button-color;
+          transition: color .15s ease-out, background .15s ease-out;
+
+          &:active {
+            transform: translateY(1px);
+          }
+
+          &:hover {
+            background: $discord-color;
+            color: white;
+          }
+        }
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        @include flex;
         border-radius: $border-radius;
         cursor: pointer;
       }
@@ -71,6 +95,8 @@ header {
 
   section {
     border: 1px solid $border-color;
+    border-bottom: 0;
+    border-right: 0;
     width: 303px;
     border-radius: $border-radius 0 0 0;
   }
