@@ -8,6 +8,8 @@ header {
   position: relative;
   @include flex(unset, unset);
   background: $nav-color;
+  height: 100%;
+  min-height: 0;
 
   nav {
     @include flex(unset, center, column);
@@ -15,6 +17,12 @@ header {
     width: var(--nav-width);
     padding-bottom: calc($gap * 2 + 72px);
     overflow-y: auto;
+    height: 100%;
+    min-height: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .list-item {
       position: relative;
