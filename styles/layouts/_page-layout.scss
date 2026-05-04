@@ -5,13 +5,16 @@ header {
 }
 
 .navigation {
+  position: relative;
   @include flex(unset, unset);
   background: $nav-color;
 
   nav {
     @include flex(unset, center, column);
     gap: $gap;
-    width: 72px;
+    width: var(--nav-width);
+    padding-bottom: calc($gap * 2 + 72px);
+    overflow-y: auto;
 
     .list-item {
       position: relative;
@@ -97,7 +100,64 @@ header {
     border: 1px solid $border-color;
     border-bottom: 0;
     border-right: 0;
-    width: 303px;
+    width: var(--section-width);
     border-radius: $border-radius 0 0 0;
+
+    .section-header {
+      position: fixed;
+      height: 48px;
+      width: var(--section-width);
+      border-bottom: 1px solid $border-color;
+      padding: $gap;
+    }
+
+    button {
+      height: 100%;
+      padding: 3px 11px;
+      color: #F6F6F6;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      
+      &.personal-btn {
+        width: 100%;
+        border-radius: calc($border-radius / 1.5);
+        background: #1D1D1E;
+        border: 1px solid $border-color;
+        font-weight: 500;
+        font-size: 13px;
+        transition: background .05s ease-in;
+
+        &:hover {
+          background: #27272b;
+        }
+      }
+    }
+  }
+
+  .resize-handle {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 4px;
+    background: none;
+    cursor: ew-resize;
+    transition: background-color .2s ease;
+
+    &:hover {
+      background: #2c2c30;
+    }
+  }
+
+  .status-bar {
+    position: fixed;
+    bottom: $gap;
+    left: $gap;
+    height: 72px;
+    width: calc(var(--nav-width) + var(--section-width) - ($gap * 2));
+    background: #202024;
+    border-radius: $border-radius;
+    box-shadow: 0 -$gap 0 $nav-color, // top cover
+                -$gap calc($gap * 3) 0 0 $nav-color; // bottom cover
   }
 }
